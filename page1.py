@@ -14,13 +14,20 @@ def main():
          "Paper jam", "Out of toner", "Windows operating system requires reinstall",
          "Operating system crashes"]
     )
+    if issue:
+        st.session_state.selected_issue = issue
+    
+    col1, col2 = st.columns([1, 1])
 
-  
-    if st.button("Next"):
-        if not requester_name.strip() or not employee_id.strip() or not department.strip() or issue == "":
-            st.error("Please fill all fields before proceeding.")
-        else:
-            st.session_state.page = "page2"
+    with col1:
+        if st.button("Next"):
+            if not requester_name.strip() or not employee_id.strip() or not department.strip() or issue == "":
+                st.error("Please fill all fields before proceeding.")
+            else:
+                st.session_state.page = "page2"
+    with col2:
+        if st.button("Back"):
+            st.session_state.page = "home"
 
 if __name__ == "__main__":
     main()
